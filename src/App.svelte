@@ -8,7 +8,7 @@
     started: "started",
     story: "story",
   };
-  let step = availableSteps.story;
+  let step = availableSteps.welcome;
 
   // Story inputs
   const storyInputs = {
@@ -19,15 +19,7 @@
     state: undefined,
   };
 
-  $: console.log(storyInputs);
-
-  let initialGoldCount;
-  let finalGoldCount;
-  let answer = "TBD";
-
   function createStory() {
-    initialGoldCount = answer_number;
-
     step = availableSteps.story;
   }
 </script>
@@ -83,11 +75,11 @@
 </style>
 
 <main>
-  {#if step == availableSteps.welcome}
+  {#if step === availableSteps.welcome}
     <div transition:fade>
       <h1>Welcome, birthday boy 🍰</h1>
       <h2 class="mt-2">
-        You're about to embark on a quest for the third lock number 🔒
+        You're about to embark on a quest for the third lock number
       </h2>
       <h2 class="has-text-primary-dark important-text">
         but you'll need your family's help.
@@ -97,15 +89,20 @@
         class="button mt-6 is-large is-rounded begin-button"
         on:click={() => {
           step = availableSteps.started;
-        }}>Click here once Emryk, Asher, Sarah, and Tristan are ready...</button>
+        }}>Click here once&nbsp;
+        <strong>Emryk</strong>,&nbsp;
+        <strong>Asher</strong>,&nbsp;
+        <strong>Sarah</strong>,&nbsp;and&nbsp;
+        <strong>Tristan</strong>
+        &nbsp;are ready...</button>
     </div>
-  {:else if step == availableSteps.started}
+  {:else if step === availableSteps.started}
     <div out:fade in:fade={{ delay: 1000 }}>
       <h2>Before we can begin...</h2>
       <form class="mt-4">
         <div class="field">
-          <label for="answer_name" class="label">Enter <span
-              class="has-text-primary">a name</span>.</label>
+          <label for="answer_name" class="label">Emryk, enter
+            <span class="has-text-primary">a name</span>.</label>
           <div class="control">
             <input
               class="input"
@@ -115,14 +112,14 @@
               placeholder="e.g Heraldo" />
           </div>
           <p class="help">
-            A name can be anything, like "Skipper", "Amanda", "Saber tooth", or
+            A name can be anything, like "Skipper", "Amanda", "Saber Tooth", or
             even "Dr. Cornbread".
           </p>
         </div>
 
         <div class="field mt-4">
-          <label for="answer_animal" class="label">Ask Asher for <span
-              class="has-text-primary">an animal</span>.</label>
+          <label for="answer_animal" class="label">Ask Asher for
+            <span class="has-text-primary">an animal</span>.</label>
           <div class="control">
             <input
               id="answer_animal"
@@ -137,8 +134,8 @@
           </p>
         </div>
         <div class="field mt-4">
-          <label for="answer_state" class="label">Ask Mom for <span
-              class="has-text-primary">a state in the United States</span>.</label>
+          <label for="answer_state" class="label">Ask Mom for
+            <span class="has-text-primary">a state in the United States</span>.</label>
           <div class="control">
             <input
               id="answer_state"
@@ -153,8 +150,8 @@
           </p>
         </div>
         <div class="field mt-4">
-          <label for="animal_transportation" class="label">Ask Dad for <span
-              class="has-text-primary">a mode of transportation</span>.</label>
+          <label for="animal_transportation" class="label">Ask Dad for
+            <span class="has-text-primary">a mode of transportation</span>.</label>
           <div class="control">
             <input
               id="animal_transportation"
@@ -169,8 +166,9 @@
           </p>
         </div>
         <div class="field mt-4">
-          <label for="answer_number" class="label">Finally, pick <span
-              class="has-text-primary">a number</span> between 10-20.</label>
+          <label for="answer_number" class="label">Finally, pick
+            <span class="has-text-primary">a number</span>
+            between 10-20.</label>
           <div class="control">
             <input
               id="answer_number"
@@ -181,15 +179,16 @@
               max="20" />
           </div>
         </div>
-        <!-- {#if answer_number && answer_state && animal_transportation && answer_name && answer_animal} -->
-        <button
-          class="button mt-4"
-          transition:fade
-          on:click|preventDefault={createStory}>Ready for the quest 🚀</button>
-        <!-- {/if} -->
+        {#if storyInputs.name && storyInputs.animal && storyInputs.number && storyInputs.transportation && storyInputs.state}
+          <button
+            class="button mt-4"
+            transition:fade
+            on:click|preventDefault={createStory}>Ready for the quest 🚀</button>
+        {/if}
       </form>
     </div>
-  {:else if step === availableSteps.story}
+  {/if}
+  {#if step === availableSteps.story}
     <Story {...storyInputs} />
   {/if}
 </main>
