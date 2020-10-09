@@ -58,6 +58,14 @@
       max-width: 1000px;
     }
   }
+  @media (max-width: 425px) {
+    main {
+      max-width: none;
+    }
+    .button-extra-text {
+      display: none;
+    }
+  }
   .important-text {
     font-weight: 600;
   }
@@ -89,12 +97,13 @@
         class="button mt-6 is-large is-rounded begin-button"
         on:click={() => {
           step = availableSteps.started;
-        }}>Click here once&nbsp;
-        <strong>Emryk</strong>,&nbsp;
-        <strong>Asher</strong>,&nbsp;
-        <strong>Sarah</strong>,&nbsp;and&nbsp;
-        <strong>Tristan</strong>
-        &nbsp;are ready...</button>
+        }}>Click here once&nbsp;<span class="button-extra-text">
+          <strong>Emryk</strong>,&nbsp;
+          <strong>Asher</strong>,&nbsp;
+          <strong>Sarah</strong>,&nbsp;and&nbsp;
+          <strong>Tristan</strong>
+          &nbsp;are&nbsp;
+        </span>ready...</button>
     </div>
   {:else if step === availableSteps.started}
     <div out:fade in:fade={{ delay: 1000 }}>
