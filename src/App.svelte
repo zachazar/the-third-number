@@ -100,8 +100,8 @@
         }}>Click here once&nbsp;<span class="button-extra-text">
           <strong>Emryk</strong>,&nbsp;
           <strong>Asher</strong>,&nbsp;
-          <strong>Sarah</strong>,&nbsp;and&nbsp;
-          <strong>Tristan</strong>
+          <strong>Mom</strong>,&nbsp;and&nbsp;
+          <strong>Dad</strong>
           &nbsp;are&nbsp;
         </span>ready...</button>
     </div>
