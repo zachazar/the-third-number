@@ -39,7 +39,6 @@
     colors.r = randomColorNumber();
     colors.g = randomColorNumber();
     colors.b = randomColorNumber();
-    console.log({ colors });
   }, 500);
 </script>
 
@@ -51,6 +50,12 @@
     font-size: 2em;
     text-indent: 2em;
     margin-bottom: 0.25em;
+  }
+  @media (max-width: 425px) {
+    p {
+      font-size: 1.5em;
+      text-indent: 1em;
+    }
   }
   .answer {
     color: #00d1b2;
