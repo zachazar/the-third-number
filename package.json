@@ -4,7 +4,9 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public"
+    "start": "sirv public",
+    "deploy": "npm run build && aws s3 sync public s3://number-3.zachazar.com",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id ${KEY} --paths '/index.html' '/build/*'"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
