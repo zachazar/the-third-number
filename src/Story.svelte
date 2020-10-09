@@ -10,6 +10,9 @@
   function randomSmallNumber() {
     return (Math.floor(Math.random() * 10) % 7) + 2;
   }
+  function randomColorNumber() {
+    return Math.floor(Math.random() * 1000) % 256;
+  }
   const moneyFromParents = randomSmallNumber();
   const moneyFromCAndZ = randomSmallNumber();
   const moneyForWater = randomSmallNumber();
@@ -27,6 +30,17 @@
       displayError = true;
     }
   }
+  const colors = {
+    r: 0,
+    g: 0,
+    b: 0,
+  };
+  setInterval(() => {
+    colors.r = randomColorNumber();
+    colors.g = randomColorNumber();
+    colors.b = randomColorNumber();
+    console.log({ colors });
+  }, 500);
 </script>
 
 <style>
@@ -132,7 +146,7 @@
     <p>
       <strong><span class="answer">{name}</span></strong>
       said: "You're right 🎉! The third number is
-      <strong>3</strong>."
+      <strong style="color: rgb({colors.r},{colors.g},{colors.b})">3</strong>."
     </p>
   {/if}
 </section>
